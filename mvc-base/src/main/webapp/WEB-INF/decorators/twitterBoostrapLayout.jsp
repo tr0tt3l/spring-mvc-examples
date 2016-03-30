@@ -64,7 +64,7 @@
 			
 			<hr>
 			<footer>
-			  <p>&copy; geowarin 2013</p>
+			  <p>&copy; calendarApp 2013</p>
 			</footer>
 			
 		</div><!--/.container-fluid-->

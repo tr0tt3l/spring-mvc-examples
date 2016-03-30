@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <title>Home</title>
@@ -13,7 +14,7 @@
 			<p>
 				<spring:message code="message.welcome"/>
 			</p>
-			<p><a class="btn btn-primary btn-large" href="http://geowarin.wordpress.com"><spring:message code="message.home.learnMore"/></a></p>
+			<p><a class="btn btn-primary btn-large" href="/show"><spring:message code="message.home.show"/></a></p>
 			
 		</div>
 		
@@ -23,7 +24,8 @@
 				<div id="message" class="alert alert-info">
 					<spring:message code="message.home.instructions"/>
 				</div>
-			
+
+
 				<form:form id="form" method="post" modelAttribute="formDTO">
 			
 					<spring:message code="message.typeMessage" var="typeMessage" />

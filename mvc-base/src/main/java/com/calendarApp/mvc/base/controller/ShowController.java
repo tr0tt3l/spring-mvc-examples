@@ -34,6 +34,6 @@ public class ShowController {
         sessionStatus.setComplete();
         redirectAttrs.addFlashAttribute("message", message);
 
-        return "redirect:/show";
+        return "redirect:/";
     }
 }

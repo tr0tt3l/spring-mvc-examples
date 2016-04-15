@@ -36,8 +36,8 @@ public class HomeController {
 		}
 		String message = formDTO.toString();
 		sessionStatus.setComplete();
-		redirectAttrs.addFlashAttribute("message", message);
-		
-		return "redirect:/";
+		redirectAttrs.addFlashAttribute("message", message);					// die FlashAttribute sind speziell für den Redirect konzipiert
+																				// damit kann man sich unter Nutzung der mitgebrachten Funktionen die Nutzung von JS
+		return "redirect:/";													// zB zur Validierung sparen
 	}
 }

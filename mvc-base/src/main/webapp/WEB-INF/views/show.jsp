@@ -10,24 +10,24 @@
 
     <body>
         <div class="hero-unit">
-            <h1>Kalender</h1>
+            <h3>${test_cal}</h3>
 
         </div>
 
         <div class="row-fluid">
             <div class="span8">
-
-                <div id="message" class="alert alert-info">
-                    <spring:message code="message.home.instructions"/>
+                <div id="message" class="alert alert-success">
+                    ${test_cal2}
                 </div>
-
-                <form:form id="formCal" modelAttribute="calendar">
-                    <form:input cssClass="input-block-level" path="showName" placeholder="${typeMessage}" autocomplete="off" type="hidden"/>
-
-                        <button type="submit" class="btn">Submit</button>
-                </form:form>
-
+                <div id="message1" class="alert alert-success">
+                    ${year}
+                </div>
+                <div id="message2" class="alert alert-success">
+                    ${test_event}
+                </div>
             </div>
         </div>
+        <p><a class="btn btn-primary btn-large" href="/test"><spring:message code="message.test.show"/></a></p>
+        <p><a class="btn btn-primary btn-large" href="/test1?arg1=hallo"><spring:message code="message.test1.show"/></a></p>
     </body>
 </html>

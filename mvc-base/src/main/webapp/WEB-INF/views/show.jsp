@@ -10,24 +10,22 @@
 
     <body>
         <div class="hero-unit">
-            <h3>${test_cal}</h3>
+            <h3>Event List</h3>
 
         </div>
 
         <div class="row-fluid">
             <div class="span8">
                 <div id="message" class="alert alert-success">
-                    ${test_cal2}
+                    ${test_event}
                 </div>
                 <div id="message1" class="alert alert-success">
-                    ${year}
+                    ${test_cal}
                 </div>
                 <div id="message2" class="alert alert-success">
-                    ${test_event}
+                    ${test_cal2}
                 </div>
             </div>
         </div>
-        <p><a class="btn btn-primary btn-large" href="/test"><spring:message code="message.test.show"/></a></p>
-        <p><a class="btn btn-primary btn-large" href="/test1?arg1=hallo"><spring:message code="message.test1.show"/></a></p>
     </body>
 </html>

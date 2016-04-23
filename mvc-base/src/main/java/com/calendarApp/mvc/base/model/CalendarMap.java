@@ -16,23 +16,30 @@ public class CalendarMap {
 
     public CalendarMap(){
         this.calendar = new GregorianCalendar();
-        this.calendar.set(2016,3,15,20,15,0);
+        this.calendar.set(2015,0,365,20,15,0);
         this.eventList = new ArrayList<Event>();
     }
 
-    public int addTimestampToList(Event event){
+    public int addEventToList(Event event){
         if(this.eventList.add(event)) {
             return 1;
         }
         else return 0;
     }
+    /*
+
+     */
+    public int validate(Event event){ //TODO:hier sollte dann geprüft werden, ob ein spezielles Event zulässig ist, und in die Liste aufgenommen werden kann --> eindeutige id, keine zeitkonflikte zu anderen Events, alle Attribute gesetzt
+        return 0;
+    }
 
     public String eventListToHtml(){
 
-        return this.eventList.get(0).getStart();
+        return this.eventList.get(0).getStart().toString();
     }
 
-    public String getName() {return "calendar test";}
+    public Calendar getCalendar() {return this.calendar;}
+    public void setCalendar(Calendar cal) {this.calendar = cal;}
 
-    public String getCalendar() {return String.valueOf(this.calendar.get(Calendar.YEAR));}
+    public String getCalendarDateAsString() {return String.valueOf(this.calendar.get(Calendar.DATE)) + " " + String.valueOf(this.calendar.get(Calendar.MONTH)) + " " + String.valueOf(this.calendar.get(Calendar.YEAR));}
 }

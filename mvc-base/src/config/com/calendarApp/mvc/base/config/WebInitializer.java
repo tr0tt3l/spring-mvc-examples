@@ -8,12 +8,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
-/**
- * http://static.springsource.org/spring-framework/docs/3.2.0.RELEASE/spring-framework-reference/html/mvc.html#mvc-container-config
- * 
- * @author Geoffroy Warin (https://github.com/geowarin)
- *
- */
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

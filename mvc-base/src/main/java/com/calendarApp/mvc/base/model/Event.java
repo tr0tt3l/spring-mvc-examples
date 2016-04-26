@@ -4,12 +4,12 @@ package com.calendarApp.mvc.base.model;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Event {
     @NotEmpty
-    private long id;
+    private int id;
     private String name;
     private Boolean privat;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -17,12 +17,12 @@ public class Event {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date end;
 
-    public Event(long id, String name, Boolean privat, long start, long end){
+    public Event(int id, String name, Boolean privat, int year, int month, int day, int hour, int min){
         this.id = id;
         this.name = name;
         this.privat = privat;
-        this.start = new Date();                                                //// Constructor legt hilfsweise Datum von heute an
-        this.end = new Date();
+        this.start = new GregorianCalendar(year, month, day, hour, min , 0).getTime();
+        this.end = new Date();                                                                                          //// Constructor legt hilfsweise Datum von heute an
     }
     public Event(){}
 
@@ -30,13 +30,14 @@ public class Event {
     public String getName(){return this.name;}
     public Date getStart() { return this.start;}
     public Date getEnd() {return this.end;}
-    public String getPrivat() {return this.privat.toString();}
+    public Boolean getPrivat() {return this.privat;}
+    public int getId() {return this.id;}
 
 
     public void generateId(){
         //TODO: per DB-Abfrage die niedrigste verfügbare (oder so) Id ermitteln und ausgeben
     }
-    public void setId(long id){
+    public void setId(int id){
         this.id = id;
     }
 

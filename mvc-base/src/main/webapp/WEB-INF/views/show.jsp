@@ -30,7 +30,7 @@
                             <td>${attribute}</td>
                         </c:forEach>
                         <td><a class="btn btn-primary btn-small" href="/event_add?id=${listValue.get(4)}&act=upd"><spring:message code="message.update.show"/></a></td>
-                        <td><a class="btn btn-primary btn-small" href="/event_add?act=del&id=1"><spring:message code="message.delete.show"/></a></td>
+                        <td><a class="btn btn-primary btn-small" href="/event_add?act=del&id=${listValue.get(4)}"><spring:message code="message.delete.show"/></a></td>
                     </tr>
                 </c:forEach>
                 </table>

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -27,23 +27,28 @@ public class EventFormController {
 
     @RequestMapping(value = "/event_add", method = RequestMethod.GET)
     public String eventAddForm(@RequestParam("act") String action,
-                               @RequestParam("id") int id,
+                               @RequestParam("id") String idString,
                                Model model,
-                               RedirectAttributes redirectAttrs,
                                HttpSession session,
                                HttpServletRequest request) {
 
         CalendarMap cal = (CalendarMap) session.getAttribute("CalendarMap");
-
+        int id = Integer.valueOf(idString);
         Event event = cal.getEventByIndex(id);
         model.addAttribute("Event", event);
         String eventName = event.getName();
         Date eventStart = event.getStart();
         Date eventEnd = event.getEnd();
 
-        redirectAttrs.addFlashAttribute("eventName", eventName);
-        redirectAttrs.addFlashAttribute("eventStart", eventStart);
-        redirectAttrs.addFlashAttribute("eventEnd", eventEnd);
+        Boolean eventPrivat = event.getPrivat();
+        ArrayList<Boolean> status = new ArrayList<Boolean>();
+        if(eventPrivat) { status.add(true); status.add(false);
+        }else           { status.add(false); status.add(true);}
+
+        model.addAttribute("eventStatus", status);
+        model.addAttribute("eventName", eventName);
+        model.addAttribute("eventStart", eventStart);
+        model.addAttribute("eventEnd", eventEnd);
 
      /*         switch(action){
             case "del":{
@@ -60,9 +65,7 @@ public class EventFormController {
         }
 
 
-  ArrayList<String> status = new ArrayList<String>();
-        status.add("privat");
-        status.add("business");
+ ;
         redirectAttrs.addAttribute("statusMap", status);
 
 
@@ -81,7 +84,7 @@ public class EventFormController {
             return "redirect:/event_add";
         }
  */
-        return "redirect:/event_add?act=del&id="+id;
+        return "/event_add.jsp?act=del&id="+idString;
     }
 
 }

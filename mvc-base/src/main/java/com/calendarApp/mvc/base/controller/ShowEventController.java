@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 
 @Controller
@@ -21,10 +22,11 @@ public class ShowEventController {
                                 HttpServletRequest request) {
 
         CalendarMap cal = (CalendarMap) session.getAttribute("CalendarMap");       // Auslesen des Attributes aus der Session
-        Event e1 = new Event(1, "test", false, 2003, 12, 25, 20, 15);               //zeigt, das man auch verschachtelte Klassen nutzen kann
+        Event e1 = new Event(0, "test", false, 2003, 12, 25, 20, 15);               //zeigt, das man auch verschachtelte Klassen nutzen kann
         if(cal.addEventToList(e1) != 1) return "/home";
-        Event e2 = new Event(2, "test2", false, 2005, 12, 5, 20, 15);                                                                            //so werden die Attribute zur Verfügung gestellt, werden dann mit ${test_event} aufgerufen
+        Event e2 = new Event(1, "test2", true, 2005, 12, 5, 20, 15);              //so werden die Attribute zur Verfügung gestellt, werden dann mit ${test_event} aufgerufen
         cal.addEventToList(e2);
+        model.addAttribute("params", new ArrayList<String>());
         model.addAttribute("list", cal.eventListToHtml());
         model.addAttribute("eventList", cal.getEventList());
 

@@ -1,12 +1,11 @@
 package com.calendarApp.mvc.base.config;
 
 
-import javax.servlet.Filter;
-
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+import javax.servlet.Filter;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

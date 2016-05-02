@@ -14,7 +14,7 @@
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
             <li class="nav-header"><spring:message code="layout.menu.import" /> </li>
-            <li><a href="/import"><spring:message code="layout.menu.import.add" /></a></li>
+            <li><a href="/upload"><spring:message code="layout.menu.import.add" /></a></li>
         </ul>
     </div>
 

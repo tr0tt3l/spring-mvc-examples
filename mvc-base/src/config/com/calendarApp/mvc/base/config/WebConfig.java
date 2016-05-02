@@ -1,5 +1,6 @@
 package com.calendarApp.mvc.base.config;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -58,12 +59,27 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasenames("classpath:messages/messages", "classpath:messages/validation");
-		// if true, the key of the message will be displayed if the key is not
-		// found, instead of throwing a NoSuchMessageException
 		messageSource.setUseCodeAsDefaultMessage(true);
 		messageSource.setDefaultEncoding("UTF-8");
-		// # -1 : never reload, 0 always reload
 		messageSource.setCacheSeconds(0);
 		return messageSource;
 	}
+	@Bean
+	public BasicDataSource dataSource(){
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/CalendarDB");
+		dataSource.setUsername("root");
+		dataSource.setPassword("calandar");
+
+		return dataSource;
+	}
+
+/*	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		return multipartResolver;
+	}
+*/
 }

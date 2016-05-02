@@ -109,11 +109,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public EventService eventService(){
 		EventService eventService = new EventServiceImpl();
-		eventService
 	}
-	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
-	<beans:property name="personDAO" ref="personDAO"></beans:property>
-	</beans:bean>
 
 /*	@Bean
 	public CommonsMultipartResolver multipartResolver() {

@@ -1,11 +1,17 @@
 package com.calendarApp.mvc.base.config;
 
+import com.calendarApp.mvc.service.EventDAO;
+import com.calendarApp.mvc.service.EventDAOImpl;
+import com.calendarApp.mvc.service.EventService;
+import com.calendarApp.mvc.service.EventServiceImpl;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,6 +23,9 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import java.util.List;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -70,10 +79,41 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/CalendarDB");
 		dataSource.setUsername("root");
-		dataSource.setPassword("calandar");
+		dataSource.setPassword("calendar");
 
 		return dataSource;
 	}
+
+	@Bean
+	public LocalSessionFactoryBean hibernate4AnnotatedSessionFactory(){
+		LocalSessionFactoryBean hibernate4AnnotatedSessionFactory = new LocalSessionFactoryBean();
+		hibernate4AnnotatedSessionFactory.setDataSource(dataSource());
+		//TODO: Modelliste implementieren
+		hibernate4AnnotatedSessionFactory.setAnnotatedClasses(com.calendarApp.mvc.base.model.Event.class);
+		Properties hibernateProperty = new Properties();
+		hibernateProperty.setProperty("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
+		hibernateProperty.setProperty("hibernate.show_sql","true");
+		hibernate4AnnotatedSessionFactory.setHibernateProperties(hibernateProperty);
+
+		return hibernate4AnnotatedSessionFactory;
+	}
+
+	@Bean
+	public EventDAO eventDAO(){
+		EventDAO eventDAO = new EventDAOImpl();
+		eventDAO.setSessionFactory((SessionFactory)hibernate4AnnotatedSessionFactory()); //// Typecast fragwürdig. Zudem sollte setSessionFactory nicht in der abstrakten Klasse bekannt gemacht sein
+
+		return eventDAO;
+	}
+
+	@Bean
+	public EventService eventService(){
+		EventService eventService = new EventServiceImpl();
+		eventService
+	}
+	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
+	<beans:property name="personDAO" ref="personDAO"></beans:property>
+	</beans:bean>
 
 /*	@Bean
 	public CommonsMultipartResolver multipartResolver() {

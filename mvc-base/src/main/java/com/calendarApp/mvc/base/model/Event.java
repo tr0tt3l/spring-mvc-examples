@@ -3,18 +3,32 @@ package com.calendarApp.mvc.base.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+@Entity
+@Table(name="Event")
 public class Event {
     @NotEmpty
+    @Id
+    @Column(name="Event_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+    @Column(name="Event_name")
     private String name;
     private Boolean privat;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name="Event_start")
     private Date start;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name="Event_end")
     private Date end;
 
     public Event(int id, String name, Boolean privat, int year, int month, int day, int hour, int min){

@@ -11,5 +11,6 @@ public interface EventService {
         public void updateEvent(Event p);
         public Event getEventById(int id);
         public void removeEvent(int id);
+        public void setEventDAO(EventDAO EventDAO);
     
 }

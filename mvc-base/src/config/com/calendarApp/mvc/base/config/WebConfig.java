@@ -24,7 +24,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import java.util.List;
 import java.util.Properties;
 
 @Configuration
@@ -109,6 +108,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public EventService eventService(){
 		EventService eventService = new EventServiceImpl();
+		eventService.setEventDAO(eventDAO());
+		return eventService;
 	}
 
 /*	@Bean
